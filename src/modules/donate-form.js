@@ -1,14 +1,17 @@
 import { DonateList } from "./donate-list";
+import { CURRENCY } from "../core/constants/settings";
 
 export class DonateForm {
   #totalAmount;
   #donateForm;
   #donateList;
+  #totalAmountHTML;
 
   constructor(totalAmount, createNewDonate) {
     this.createNewDonate = createNewDonate;
     this.#donateForm = document.createElement("form");
     this.#totalAmount = totalAmount;
+    this.#totalAmountHTML = document.createElement("h1");
     this.#donateList = new DonateList();
   }
 
@@ -25,7 +28,7 @@ export class DonateForm {
   createAmountInput() {
     const inputLabel = document.createElement("label");
     inputLabel.className = "donate-form__input-label";
-    inputLabel.textContent = "Введите сумму в $";
+    inputLabel.textContent = `Введите сумму в ${CURRENCY}`;
 
     const input = document.createElement("input");
     input.className = "donate-form__donate-input";
@@ -38,12 +41,11 @@ export class DonateForm {
     return inputLabel;
   }
 
-  /*   Также в DonateForm создайте метод updateTotalAmount, который будет принимать в себя параметр newAmount и помещать текст “newAmount$” (newAmount - параметр метода updateTotalAmount) в элемент с id “total-amount”. Переданное начальное значение общей суммы передайте как текст в элемент  с id “total-amount”. В итоге изначально у вас получится “0$”. */
   updateTotalAmount(newAmount) {
     const sumHTML = document.querySelector("#total-amount");
     const prevAmount = parseInt(sumHTML.textContent);
     newAmount = Number(prevAmount) + Number(newAmount);
-    sumHTML.textContent = `${newAmount} $`;
+    sumHTML.textContent = `${newAmount} ${CURRENCY}`;
   }
 
   // submit
@@ -66,9 +68,8 @@ export class DonateForm {
   render() {
     this.#donateForm.className = "donate-form";
 
-    const totalAmount = document.createElement("h1");
-    totalAmount.id = "total-amount";
-    totalAmount.textContent = `${this.#totalAmount} $`;
+    this.#totalAmountHTML.id = "total-amount";
+    this.#totalAmountHTML.textContent = `${this.#totalAmount} ${CURRENCY}`;
 
     this.#donateForm.addEventListener("submit", () =>
       this.submitHandler(event, this.createNewDonate)
@@ -77,7 +78,7 @@ export class DonateForm {
     const amountInput = this.createAmountInput();
     const donateButton = this.createButton();
 
-    this.#donateForm.append(totalAmount, amountInput, donateButton);
+    this.#donateForm.append(this.#totalAmountHTML, amountInput, donateButton);
 
     return this.#donateForm;
   }
