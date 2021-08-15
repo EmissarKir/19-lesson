@@ -15,14 +15,19 @@ export default class App {
         { amount: 1, date: new Date() },
       ],
       totalAmount: 0,
+      currentDonate: null,
     };
-    this.#donateForm = new DonateForm(this.state.totalAmount);
+
+    this.#donateForm = new DonateForm(
+      this.state.totalAmount,
+      this.createNewDonate.bind(this)
+    );
     this.#donateList = new DonateList(this.state.donates);
   }
+
   createNewDonate(newDonate) {
-    const newArr = [...this.state.donates, { ...newDonate }];
-    // donateListHTML.upfateDonates()
-    // donateFormHTML.updateTotalAmount()
+    this.state.donates = [...this.state.donates, newDonate];
+    return this.state.donates;
   }
 
   run() {
