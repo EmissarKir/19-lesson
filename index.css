@@ -1,4 +1,74 @@
 :root {
+  --main-background: #ffffff;
+  --primary-color: #546792;
+  --text-color: black;
+  --js-image-size: 450px;
+}
+
+h2 {
+  margin: 0;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background: var(--main-background);
+  min-height: 100vh;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: var(--text-color);
+}
+.donate-form {
+  margin-bottom: 40px;
+}
+.donate-form__input-label {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}
+.donate-form__donate-input {
+  border: 2px solid var(--primary-color);
+  border-radius: 5px;
+  color: var(--primary-color);
+
+  font-size: 1.5rem;
+  line-height: 2.5rem;
+  /* height: 40px;
+    width: 50%;
+    padding: 0;
+    */
+  margin-left: 15px;
+}
+.donate-form__submit-button {
+  border: 2px solid var(--primary-color);
+  border-radius: 5px;
+  color: var(--primary-color);
+
+  font-size: 1.5rem;
+  line-height: 2.5rem;
+}
+.donates-container {
+  width: var(--js-image-size);
+}
+
+.donates-container__title {
+  color: var(--primary-color);
+}
+.donate-item {
+  width: 100%;
+  font-size: 1.5rem;
+  line-height: 2.5rem;
+  border-bottom: 2px solid var(--primary-color);
+  padding: 10px 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* :root {
     --main-background: black;
     --text-color: #ffffff;
     --js-image-size: 200px;
@@ -64,4 +134,4 @@ body {
     line-height: 3rem;
     margin-bottom: 15px;
     padding: 0 20px;
-}
+} */
